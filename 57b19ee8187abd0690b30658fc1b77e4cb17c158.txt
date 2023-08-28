@@ -1,1 +1,27 @@
-STS{MeT4_1nf0_n1c3}
+import requests
+from bs4 import BeautifulSoup
+//STS{TH3R3_1S_n0_FL4G}
+# URL of the website you want to parse
+url = 'https://pastebin.com/kZhp9gkh'
+
+# Send an HTTP GET request to the website
+response = requests.get(url)
+
+# Check if the request was successful
+if response.status_code == 200:
+    # Parse the HTML content using BeautifulSoup
+    soup = BeautifulSoup(response.content, 'html.parser')
+    
+    # Find specific elements by their HTML tags, classes, or IDs
+    title_element = soup.find('title')
+    all_paragraphs = soup.find_all('p')
+    
+    # Print the extracted information
+    if title_element:
+        print("Title:", title_element.text)
+    
+    print("All paragraphs:")
+    for paragraph in all_paragraphs:
+        print(paragraph.text)
+else:
+    print("Failed to retrieve the website. Status code:", response.status_code)
